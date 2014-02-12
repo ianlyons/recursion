@@ -5,5 +5,18 @@
 
 // But in stead we're going to implement it from scratch:
 var getElementsByClassName = function (className) {
-  // your code here
+  var node = document.body;
+  var result = [];
+  var recurseNodes = function (node) {
+  	if(node.classList.contains(className)) {
+  		result.push(node);
+  	}
+  	if(node.childElementCount) {
+  		for (var i = 0; i < node.childElementCount; i++) {
+  			recurseNodes(node.children[i]);
+  		}
+  	}
+  };
+  recurseNodes(node);
+  return result;
 };
